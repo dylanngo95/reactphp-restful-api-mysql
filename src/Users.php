@@ -30,7 +30,7 @@ final class Users
 
     public function find(string $id): PromiseInterface
     {
-        return $this->db->query('SELECT id, name, email FROM users WHERE id = ?', [$id])
+        return $this->db->query('SELECT id, name, email FROM users WHERE id = ? LIMIT 1', [$id])
             ->then(
                 function (QueryResult $result) {
                     if (empty($result->resultRows)) {
